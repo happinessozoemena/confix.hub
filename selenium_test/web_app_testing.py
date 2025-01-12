@@ -6,7 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 # Setup WebDriver
-driver = webdriver.Chrome()  # Ensure ChromeDriver is properly installed and in PATH
+driver = webdriver.Chrome()
 driver.get("https://thinking-tester-contact-list.herokuapp.com/")
 
 
@@ -15,9 +15,8 @@ def test_login():
     print("Starting sumit Test")
     driver.find_element(By.ID, "email").send_keys("happy@gmail.com")
     driver.find_element(By.ID, "password").send_keys("Ozoemena123@#")
-    driver.find_element(By.ID, "submit").click()  # Replace with actual button ID
-    time.sleep(3)  # Adjust time if needed
-   # assert "Dashboard" in driver.title, "sumit Test Failed"  # Replace with actual title
+    driver.find_element(By.ID, "submit").click()
+    time.sleep(3)
     print("sumit Test Passed")
 
 
@@ -25,7 +24,7 @@ def test_login():
 def test_add_contact():
     print("Starting Add Contact Test")
     for i in range(1, 11):  # Loop to add 10 contacts
-        driver.find_element(By.ID, "add-contact").click()  # Replace with actual button ID
+        driver.find_element(By.ID, "add-contact").click()
 
         # Fill Form Fields
         WebDriverWait(driver, 10).until(
@@ -47,7 +46,7 @@ def test_add_contact():
         time.sleep(1)  # Allow the UI to update
 
     # Verify 10 contacts have been added
-    contacts = driver.find_elements(By.CLASS_NAME, "contact-item")  # Replace with actual class
+    contacts = driver.find_elements(By.CLASS_NAME, "contact-item")
     assert len(contacts) == 10, f"Expected 10 contacts, but found {len(contacts)}. Add Contact Test Failed."
     print("Add Contact Test Passed")
 
@@ -55,9 +54,9 @@ def test_add_contact():
 # Logout Test
 def test_logout():
     print("Starting Logout Test")
-    driver.find_element(By.ID, "logout.logout").click()  # Replace with actual button ID
+    driver.find_element(By.ID, "logout.logout").click()
     time.sleep(2)
-    assert "Login" in driver.title, "Logout Test Failed"  # Replace with actual login page title
+    assert "Login" in driver.title, "Logout Test Failed"
     print("Logout Test Passed")
 
 
